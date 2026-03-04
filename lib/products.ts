@@ -31,7 +31,7 @@ export const products: Product[] = [
         capacity: "2.0L",
         bestFor: "Espresso Quality",
         easeOfUse: "Guided",
-        image: "https://m.media-amazon.com/images/I/71RovE-OPrL.jpg",
+        image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B0C3MQHBNH",
     },
     {
@@ -48,7 +48,7 @@ export const products: Product[] = [
         capacity: "1.8L",
         bestFor: "Lattes & Cappuccinos",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71Lh58vjK5L.jpg",
+        image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B09V1L9X6Z",
     },
     {
@@ -65,7 +65,7 @@ export const products: Product[] = [
         capacity: "60 oz",
         bestFor: "Variety",
         easeOfUse: "Easy",
-        image: "https://m.media-amazon.com/images/I/71X8k+E7X8L.jpg",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B097Z7N9KF",
     },
     {
@@ -82,7 +82,7 @@ export const products: Product[] = [
         capacity: "2.0L",
         bestFor: "Skill Development",
         easeOfUse: "Intermediate",
-        image: "https://m.media-amazon.com/images/I/719F8r+7DNL.jpg",
+        image: "https://images.unsplash.com/photo-1610632380989-680fe40816c6?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B00CH9QWOU",
     },
     {
@@ -99,7 +99,7 @@ export const products: Product[] = [
         capacity: "12 Cups",
         bestFor: "Large Batches",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71p0v70vQ0L.jpg",
+        image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B07S98411M",
     },
     {
@@ -116,7 +116,7 @@ export const products: Product[] = [
         capacity: "1.1L",
         bestFor: "Small Kitchens",
         easeOfUse: "Intermediate",
-        image: "https://m.media-amazon.com/images/I/71I5-zH7-2L.jpg",
+        image: "https://images.unsplash.com/photo-1517701550927-30cfcb61d4bd?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B0CDY85Q2N",
     },
     {
@@ -133,7 +133,7 @@ export const products: Product[] = [
         capacity: "1.8L",
         bestFor: "User Customization",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71-0Gv2fTlL.jpg",
+        image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B08V5MDXDM",
     },
     {
@@ -150,7 +150,7 @@ export const products: Product[] = [
         capacity: "8 Cups",
         bestFor: "Brewing Standards",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71lq7n8g7eL.jpg",
+        image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B0892CHRT3",
     },
     {
@@ -167,7 +167,7 @@ export const products: Product[] = [
         capacity: "75 oz",
         bestFor: "Speed & Convenience",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71X8vU9B8vL.jpg",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B078XNWG3N",
     },
     {
@@ -184,7 +184,7 @@ export const products: Product[] = [
         capacity: "40 oz",
         bestFor: "Rich Crema",
         easeOfUse: "Very Easy",
-        image: "https://m.media-amazon.com/images/I/71M3X1-lR6L.jpg",
+        image: "https://images.unsplash.com/photo-1610632380989-680fe40816c6?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B01N7T9S77",
     },
     {
@@ -201,7 +201,7 @@ export const products: Product[] = [
         capacity: "1.7L",
         bestFor: "Hands-on Experience",
         easeOfUse: "Intermediate",
-        image: "https://m.media-amazon.com/images/I/71QAtfExV2L.jpg",
+        image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B09M96V6G2",
     },
     {
@@ -218,7 +218,7 @@ export const products: Product[] = [
         capacity: "12 Cups",
         bestFor: "Affordable Versatility",
         easeOfUse: "Easy",
-        image: "https://m.media-amazon.com/images/I/71jH5r7P11L.jpg",
+        image: "https://images.unsplash.com/photo-1517701550927-30cfcb61d4bd?auto=format&fit=crop&q=80&w=1080",
         latestPriceLink: "https://www.amazon.com/dp/B07LBCMHG5",
     },
 ];
