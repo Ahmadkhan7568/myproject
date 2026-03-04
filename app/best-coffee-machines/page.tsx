@@ -120,7 +120,7 @@ export default function BestCoffeeMachines() {
                         </p>
                     </div>
                     <div className="max-w-5xl mx-auto">
-                        <ComparisonTable />
+                        <ComparisonTable products={products.slice(0, 4)} />
                     </div>
                 </div>
             </section>

@@ -31,7 +31,7 @@ export default function Comparison() {
                 <div className="container mx-auto px-6">
                     <div className="mb-20">
                         <h2 className="text-2xl font-serif text-coffee-brown mb-8 uppercase tracking-widest text-center">Technical Specifications</h2>
-                        <ComparisonTable />
+                        <ComparisonTable products={products.slice(0, 4)} />
                     </div>
 
                     {/* Key Head-to-Head Comparisons */}
