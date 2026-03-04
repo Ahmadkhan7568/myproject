@@ -24,12 +24,12 @@ const Hero = () => {
                         <span className="text-gold text-[10px] uppercase tracking-[0.4em] font-black">Professional 2026 Buying Guide</span>
                     </div>
 
-                    <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif text-white leading-[1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-white leading-[1] animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
                         The Art of <br />
                         <span className="text-gold italic text-glow-gold">Superior Brewing</span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto font-sans font-extralight leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500 italic">
+                    <p className="text-lg md:text-2xl text-white/60 max-w-3xl mx-auto font-sans font-extralight leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-500 italic px-4">
                         Expert analysis, technical deep-dives, and curated selections for those who refuse to settle for anything less than the perfect cup.
                     </p>
 

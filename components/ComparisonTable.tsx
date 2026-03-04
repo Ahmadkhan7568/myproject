@@ -1,59 +1,92 @@
-import { products } from "@/lib/products";
+"use client";
 
-const ComparisonTable = () => {
-    const tableProducts = products.slice(0, 4); // Show top 4 in the table
+import { Check, X } from "lucide-react";
+
+interface ComparisonTableProps {
+    products: any[];
+}
+
+const ComparisonTable = ({ products }: ComparisonTableProps) => {
+    if (!products || products.length === 0) return null;
+
+    const rows = [
+        { label: "Type", key: "type" },
+        { label: "Price", key: "price" },
+        { label: "Rating", key: "rating" },
+        { label: "Market Source", key: "source" },
+    ];
 
     return (
-        <div className="overflow-x-auto">
-            <table className="w-full border-collapse bg-white rounded-2xl overflow-hidden shadow-luxury">
-                <thead>
-                    <tr className="bg-matte-black text-cream uppercase text-[10px] tracking-[0.3em] text-left">
-                        <th className="px-8 py-6 border-b border-white/10 font-serif">Feature</th>
-                        {tableProducts.map((product) => (
-                            <th key={product.id} className="px-8 py-6 border-b border-white/10 font-serif text-center">
-                                {product.name}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody className="text-sm">
-                    {[
-                        { label: "Type", key: "type" as const },
-                        { label: "Price", key: "price" as const },
-                        { label: "Price Range", key: "priceRange" as const },
-                        { label: "Milk Frother", key: "milkFrother" as const },
-                        { label: "Capacity", key: "capacity" as const },
-                        { label: "Best For", key: "bestFor" as const },
-                        { label: "Ease of Use", key: "easeOfUse" as const },
-                    ].map((row, idx) => (
-                        <tr key={idx} className={idx % 2 === 0 ? "bg-cream/20" : "bg-white"}>
-                            <td className="px-8 py-5 font-bold text-coffee-brown uppercase text-[10px] tracking-widest border-b border-coffee-brown/5">
-                                {row.label}
-                            </td>
-                            {tableProducts.map((product) => (
-                                <td key={product.id} className="px-8 py-5 text-center text-matte-black/70 border-b border-coffee-brown/5 font-sans">
-                                    {typeof product[row.key] === "boolean"
-                                        ? (product[row.key] ? "✓ Yes" : "✕ No")
-                                        : product[row.key]}
-                                </td>
+        <div className="space-y-16 animate-in fade-in duration-1000">
+            <div className="text-center space-y-6">
+                <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight">Technical <span className="text-gold italic">Benchmark</span></h2>
+                <p className="text-white/40 max-w-2xl mx-auto text-sm font-medium italic">A side-by-side analysis of the market's leading coffee engineering feats.</p>
+            </div>
+
+            <div className="overflow-x-auto pb-12 scrollbar-hide">
+                <table className="w-full border-separate border-spacing-x-4 border-spacing-y-0">
+                    <thead>
+                        <tr>
+                            <th className="p-0"></th>
+                            {products.map((product, i) => (
+                                <th key={product.id || i} className="p-0 min-w-[280px]">
+                                    <div className="bg-white/5 rounded-t-[40px] border-x border-t border-white/10 p-10 text-center space-y-4 backdrop-blur-sm">
+                                        <p className="text-[10px] font-black text-gold uppercase tracking-[0.3em]">Candidate {i + 1}</p>
+                                        <h3 className="text-xl font-serif text-white leading-snug h-14 line-clamp-2">{product.name}</h3>
+                                    </div>
+                                </th>
                             ))}
                         </tr>
-                    ))}
-                    <tr>
-                        <td className="px-8 py-8 border-b border-coffee-brown/5"></td>
-                        {tableProducts.map((product) => (
-                            <td key={product.id} className="px-8 py-8 border-b border-coffee-brown/5 text-center">
-                                <a
-                                    href={product.latestPriceLink}
-                                    className="inline-block text-gold text-[10px] font-bold tracking-widest border-b-2 border-gold hover:text-coffee-brown hover:border-coffee-brown transition-all pb-1"
-                                >
-                                    VIEW PRICE
-                                </a>
-                            </td>
+                    </thead>
+                    <tbody className="text-sm">
+                        {rows.map((row, idx) => (
+                            <tr key={idx} className="group">
+                                <td className="px-10 py-8 bg-black/40 border-l border-white/5 first:rounded-tl-[20px] last:rounded-bl-[20px] backdrop-blur-md">
+                                    <span className="text-[10px] font-black text-white/30 uppercase tracking-[0.3em] font-inter">{row.label}</span>
+                                </td>
+                                {products.map((product, pIdx) => (
+                                    <td
+                                        key={pIdx}
+                                        className={`px-10 py-8 text-center text-white/70 border-x border-white/5 transition-all duration-500 group-hover:bg-white/5 ${idx === rows.length - 1 ? 'border-b border-white/10' : 'border-b border-white/5'}`}
+                                    >
+                                        <span className="font-serif text-lg text-white">
+                                            {product[row.key] === true ? <Check className="mx-auto text-green-500" /> :
+                                                product[row.key] === false ? <X className="mx-auto text-red-500/50" /> :
+                                                    product[row.key]}
+                                        </span>
+                                    </td>
+                                ))}
+                            </tr>
                         ))}
-                    </tr>
-                </tbody>
-            </table>
+                        <tr>
+                            <td className="p-0"></td>
+                            {products.map((product, i) => (
+                                <th key={i} className="p-0">
+                                    <div className="bg-white/5 rounded-b-[40px] border-x border-b border-white/10 p-10 text-center backdrop-blur-sm">
+                                        <a
+                                            href={product.latestPriceLink}
+                                            className="gold-button inline-flex px-8 py-4 rounded-full text-[10px] font-black tracking-widest uppercase shadow-gold-glow"
+                                        >
+                                            SECURE ITEM
+                                        </a>
+                                    </div>
+                                </th>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div className="flex justify-center flex-wrap gap-8 items-center pt-8 border-t border-white/5">
+                <div className="flex items-center space-x-3 text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">
+                    <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                    <span>US-EAST RELAY ACTIVE</span>
+                </div>
+                <div className="flex items-center space-x-3 text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">
+                    <div className="w-2 h-2 rounded-full bg-gold shadow-[0_0_10px_rgba(198,167,94,0.5)]"></div>
+                    <span>MARKET DATA SYNCED</span>
+                </div>
+            </div>
         </div>
     );
 };

@@ -58,7 +58,7 @@ export default function Home() {
       <section className="bg-matte-black py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2000')] bg-fixed bg-cover bg-center opacity-10 grayscale scale-110"></div>
         <div className="max-w-7xl mx-auto px-8 relative z-10">
-          <ComparisonTable />
+          <ComparisonTable products={db.products.slice(0, 4)} />
         </div>
       </section>
 

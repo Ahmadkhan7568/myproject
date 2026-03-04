@@ -37,11 +37,14 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/30"></div>
                 <div className="relative w-full h-full transition-transform duration-700 group-hover:scale-110">
                     <Image
-                        src={product.image}
+                        src={product.image || 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800'}
                         alt={product.name}
                         fill
                         className="object-contain drop-shadow-2xl"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onError={(e: any) => {
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800';
+                        }}
                     />
                 </div>
 
