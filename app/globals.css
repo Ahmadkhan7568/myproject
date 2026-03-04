@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5e6d3;
+  --foreground: #121212;
+}
+
+@theme {
+  --font-playfair: "Playfair Display", serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair);
+}
+
+.luxury-gradient {
+  background: linear-gradient(135deg, #3e2723 0%, #121212 100%);
+}
+
+.gold-button {
+  background: linear-gradient(135deg, #c6a75e 0%, #b8860b 100%);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(198, 167, 94, 0.3);
+}
+
+.gold-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(198, 167, 94, 0.5);
+  filter: brightness(1.1);
+}
+
+.card-luxury {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-luxury:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+.glow-gold {
+  filter: drop-shadow(0 0 5px rgba(198, 167, 94, 0.6));
+}
