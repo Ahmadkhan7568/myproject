@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+// Home Page Forced Rebuild - 2026-03-05
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";

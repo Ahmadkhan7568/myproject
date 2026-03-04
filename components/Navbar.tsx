@@ -1,4 +1,5 @@
 import Link from "next/link";
+// UI Forced Update - 2026-03-05
 
 const Navbar = () => {
     return (
