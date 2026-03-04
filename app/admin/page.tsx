@@ -14,7 +14,8 @@ import {
     CreditCard,
     AlertCircle,
     CheckCircle2,
-    ArrowRight
+    ArrowRight,
+    ShieldCheck
 } from "lucide-react";
 import { getDB, updateSettings, logWithdrawal } from "@/lib/database";
 
@@ -36,13 +37,22 @@ export default function AdminDashboard() {
         { name: "Active Users", value: "156", change: "+22.3%", trending: "up", icon: Users, color: "text-purple-500" },
     ];
 
+    const [paypalEmail, setPaypalEmail] = useState("");
+    const [isPaypalAttached, setIsPaypalAttached] = useState(false);
+    const [showPaypalForm, setShowPaypalForm] = useState(false);
+
     const handleWithdraw = () => {
         setIsWithdrawing(true);
-        // Save to "Real" DB
+        const amount = 1290 * 0.5; // Always 50% for this demo/policy
+
         if (withdrawalMethod === 'crypto') {
             updateSettings({ walletAddress });
         }
-        logWithdrawal({ method: withdrawalMethod, address: walletAddress, amount: 1290 * 0.5 });
+        logWithdrawal({
+            method: withdrawalMethod,
+            address: withdrawalMethod === 'crypto' ? walletAddress : paypalEmail,
+            amount
+        });
 
         setTimeout(() => {
             setIsWithdrawing(false);
@@ -120,93 +130,156 @@ export default function AdminDashboard() {
                             <div className="p-3 rounded-2xl bg-gold/10 text-gold border border-gold/20">
                                 <Wallet size={24} />
                             </div>
-                            <h2 className="text-2xl font-serif text-coffee-brown">Withdraw Funds</h2>
+                            <h2 className="text-2xl font-serif text-coffee-brown">Withdrawal Liquidity</h2>
                         </div>
 
                         {withdrawn ? (
-                            <div className="p-8 rounded-3xl bg-green-50 border border-green-100 text-center animate-in zoom-in-95 duration-500">
-                                <CheckCircle2 className="text-green-500 w-12 h-12 mx-auto mb-4" />
-                                <h3 className="text-xl font-bold text-green-900 mb-2">Request Submitted</h3>
-                                <p className="text-green-700 text-sm max-w-sm mx-auto">
-                                    Your withdrawal request is being processed.
-                                    {withdrawalMethod === 'crypto' && " As per Amazon policy, crypto conversions take 3-7 working days."}
+                            <div className="p-12 rounded-[40px] bg-green-50 border border-green-100 text-center animate-in zoom-in-95 duration-500">
+                                <CheckCircle2 className="text-green-500 w-16 h-16 mx-auto mb-6" />
+                                <h3 className="text-2xl font-serif text-green-900 mb-2">Transaction Finalized</h3>
+                                <p className="text-green-700 text-sm max-w-sm mx-auto font-medium">
+                                    Your withdrawal request for <span className="font-bold">$645.00</span> has been logged.
+                                    {withdrawalMethod === 'crypto' && " Note: Processing requires 3-7 business days for scrip verification."}
                                 </p>
                                 <button
-                                    onClick={() => setWithdrawn(false)}
-                                    className="mt-6 text-green-700 font-bold text-xs uppercase tracking-widest underline underline-offset-4"
+                                    onClick={() => { setWithdrawn(false); setWithdrawalMethod(null); }}
+                                    className="mt-8 gold-button px-10 py-4 rounded-3xl text-[10px] font-black tracking-widest"
                                 >
-                                    New Withdrawal
+                                    NEW OPERATION
                                 </button>
                             </div>
                         ) : (
-                            <div className="space-y-8">
+                            <div className="space-y-10">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <button
-                                        onClick={() => setWithdrawalMethod("paypal")}
-                                        className={`p-6 rounded-[32px] border-2 text-left transition-all group ${withdrawalMethod === 'paypal' ? 'border-gold bg-gold/5' : 'border-[#F1F3F5] bg-[#F8F9FA] hover:border-gold/30'}`}
+                                        onClick={() => { setWithdrawalMethod("paypal"); setShowPaypalForm(false); }}
+                                        className={`p-8 rounded-[40px] border-2 text-left transition-all group relative overflow-hidden ${withdrawalMethod === 'paypal' ? 'border-gold bg-gold/5' : 'border-[#F1F3F5] bg-[#F8F9FA] hover:border-gold/30'}`}
                                     >
-                                        <div className="flex items-center space-x-4">
-                                            <div className={`p-3 rounded-2xl ${withdrawalMethod === 'paypal' ? 'bg-gold text-white' : 'bg-white text-[#6C757D] border border-[#E9ECEF]'}`}>
-                                                <CreditCard size={20} />
+                                        <div className="flex items-center space-x-4 relative z-10">
+                                            <div className={`p-4 rounded-2xl ${withdrawalMethod === 'paypal' ? 'bg-gold text-white shadow-gold-glow' : 'bg-white text-[#6C757D] border border-[#E9ECEF]'}`}>
+                                                <CreditCard size={24} />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-[#1a1a1a]">PayPal</p>
-                                                <p className="text-[10px] text-[#6C757D] font-medium uppercase tracking-widest">Instant Transfer</p>
+                                                <p className="font-bold text-[#1a1a1a] text-lg">PayPal</p>
+                                                <p className="text-[10px] text-[#6C757D] font-black uppercase tracking-[0.2em]">{isPaypalAttached ? 'Connected' : 'Action Required'}</p>
                                             </div>
                                         </div>
                                     </button>
 
                                     <button
                                         onClick={() => setWithdrawalMethod("crypto")}
-                                        className={`p-6 rounded-[32px] border-2 text-left transition-all group ${withdrawalMethod === 'crypto' ? 'border-gold bg-gold/5' : 'border-[#F1F3F5] bg-[#F8F9FA] hover:border-gold/30'}`}
+                                        className={`p-8 rounded-[40px] border-2 text-left transition-all group relative overflow-hidden ${withdrawalMethod === 'crypto' ? 'border-gold bg-gold/5' : 'border-[#F1F3F5] bg-[#F8F9FA] hover:border-gold/30'}`}
                                     >
-                                        <div className="flex items-center space-x-4">
-                                            <div className={`p-3 rounded-2xl ${withdrawalMethod === 'crypto' ? 'bg-gold text-white' : 'bg-white text-[#6C757D] border border-[#E9ECEF]'}`}>
-                                                <Coffee size={20} />
+                                        <div className="flex items-center space-x-4 relative z-10">
+                                            <div className={`p-4 rounded-2xl ${withdrawalMethod === 'crypto' ? 'bg-gold text-white shadow-gold-glow' : 'bg-white text-[#6C757D] border border-[#E9ECEF]'}`}>
+                                                <Coffee size={24} />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-[#1a1a1a]">Crypto Wallet</p>
-                                                <p className="text-[10px] text-[#6C757D] font-medium uppercase tracking-widest">USDT / BTC</p>
+                                                <p className="font-bold text-[#1a1a1a] text-lg">Crypto</p>
+                                                <p className="text-[10px] text-[#6C757D] font-black uppercase tracking-[0.2em]">Cross-Border Scrip</p>
                                             </div>
                                         </div>
                                     </button>
                                 </div>
 
+                                {withdrawalMethod === 'paypal' && (
+                                    <div className="animate-in slide-in-from-top-4 duration-500">
+                                        {!isPaypalAttached && !showPaypalForm ? (
+                                            <div className="p-10 rounded-[40px] bg-[#FAF7F2] border border-gold/10 text-center space-y-6">
+                                                <p className="text-coffee-brown/60 text-sm font-medium italic">"Attach PayPal to withdraw funds securely to your verified merchant account."</p>
+                                                <button
+                                                    onClick={() => setShowPaypalForm(true)}
+                                                    className="gold-button px-10 py-4 rounded-2xl text-[10px] font-black tracking-widest uppercase"
+                                                >
+                                                    CONNECT PAYPAL
+                                                </button>
+                                            </div>
+                                        ) : showPaypalForm && !isPaypalAttached ? (
+                                            <div className="space-y-4">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-[#ADB5BD] ml-4">Merchant Email Address</label>
+                                                <input
+                                                    type="email"
+                                                    placeholder="paypal-merchant@example.com"
+                                                    value={paypalEmail}
+                                                    onChange={(e) => setPaypalEmail(e.target.value)}
+                                                    className="w-full bg-[#F8F9FA] border border-[#E9ECEF] rounded-3xl px-8 py-5 text-sm focus:outline-none focus:border-gold transition-all font-medium"
+                                                />
+                                                <button
+                                                    onClick={() => { if (paypalEmail) setIsPaypalAttached(true); }}
+                                                    className="w-full bg-matte-black text-white py-5 rounded-3xl text-[10px] font-black tracking-widest uppercase hover:bg-gold transition-all shadow-lg"
+                                                >
+                                                    VERIFY & ATTACH ACCOUNT
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="p-8 rounded-[40px] bg-green-50 border border-green-100 flex items-center justify-between">
+                                                <div className="flex items-center space-x-4">
+                                                    <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                                        <CheckCircle2 size={20} />
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-bold text-green-900">{paypalEmail}</p>
+                                                        <p className="text-[10px] text-green-700 font-black uppercase tracking-widest">Primary Merchant Account</p>
+                                                    </div>
+                                                </div>
+                                                <button onClick={() => setIsPaypalAttached(false)} className="text-[10px] font-black text-red-500 uppercase tracking-widest">Detach</button>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
                                 {withdrawalMethod === 'crypto' && (
-                                    <div className="space-y-4 animate-in slide-in-from-top-4 duration-500">
-                                        <div className="relative">
+                                    <div className="space-y-6 animate-in slide-in-from-top-4 duration-500">
+                                        <div className="space-y-4">
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-[#ADB5BD] ml-4">Settlement Wallet (USDT/BTC)</label>
                                             <input
                                                 type="text"
-                                                placeholder="Enter your USDT (ERC-20 / TRC-20) address"
+                                                placeholder="0x... or bc1..."
                                                 value={walletAddress}
                                                 onChange={(e) => setWalletAddress(e.target.value)}
-                                                className="w-full bg-[#F8F9FA] border border-[#E9ECEF] rounded-2xl px-6 py-4 text-sm focus:outline-none focus:border-gold transition-all"
+                                                className="w-full bg-[#F8F9FA] border border-[#E9ECEF] rounded-3xl px-8 py-5 text-sm focus:outline-none focus:border-gold transition-all font-medium"
                                             />
                                         </div>
-                                        <div className="p-5 rounded-2xl bg-blue-50 border border-blue-100 flex items-start space-x-3">
-                                            <AlertCircle className="text-blue-500 flex-shrink-0 mt-0.5" size={18} />
-                                            <p className="text-xs text-blue-700 leading-relaxed font-medium">
-                                                <b>Important:</b> As per Amazon policy to convert the money in crypto it will take 3 to 7 working days, and you can take only 50% in crypto.
-                                            </p>
+                                        <div className="p-8 rounded-[40px] bg-blue-50/50 border border-blue-100/50 backdrop-blur-sm relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 p-8 opacity-5">
+                                                <ShieldCheck size={64} className="text-blue-900" />
+                                            </div>
+                                            <div className="flex items-start space-x-4 relative z-10">
+                                                <div className="p-3 rounded-2xl bg-white text-blue-600 shadow-sm border border-blue-100">
+                                                    <AlertCircle size={20} />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <h4 className="text-xs font-black uppercase tracking-widest text-blue-900">Capital Protection Protocol</h4>
+                                                    <p className="text-xs text-blue-800/70 leading-relaxed font-medium italic">
+                                                        "For diversified risk management and liquidity stabilization, crypto settlements are currently capped at 50% of the total accrued balance per cycle. Conversion audits require 3-7 business days for scrip verification."
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
 
                                 {withdrawalMethod && (
-                                    <button
-                                        onClick={handleWithdraw}
-                                        disabled={isWithdrawing || (withdrawalMethod === 'crypto' && !walletAddress)}
-                                        className="w-full gold-button py-5 rounded-2xl text-sm font-black tracking-[0.2em] flex items-center justify-center space-x-3 shadow-gold-glow disabled:opacity-50"
-                                    >
-                                        {isWithdrawing ? (
-                                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                                        ) : (
-                                            <>
-                                                <span>PROCESS WITHDRAWAL</span>
-                                                <ArrowRight size={18} />
-                                            </>
-                                        )}
-                                    </button>
+                                    <div className="pt-6">
+                                        <div className="flex justify-between items-center mb-6 px-4">
+                                            <span className="text-[10px] font-black text-[#ADB5BD] uppercase tracking-[0.3em]">Estimated Settlement</span>
+                                            <span className="text-2xl font-serif text-coffee-brown">$645.00 <span className="text-[10px] font-sans text-gold uppercase tracking-widest">(50% Cap)</span></span>
+                                        </div>
+                                        <button
+                                            onClick={handleWithdraw}
+                                            disabled={isWithdrawing || (withdrawalMethod === 'crypto' && !walletAddress) || (withdrawalMethod === 'paypal' && !isPaypalAttached)}
+                                            className="w-full gold-button py-6 rounded-3xl text-[10px] font-black tracking-[0.25em] flex items-center justify-center space-x-3 shadow-gold-glow disabled:opacity-30 disabled:scale-100 active:scale-95 transition-all"
+                                        >
+                                            {isWithdrawing ? (
+                                                <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                            ) : (
+                                                <>
+                                                    <span>EXECUTE DISBURSEMENT</span>
+                                                    <ArrowRight size={18} />
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         )}

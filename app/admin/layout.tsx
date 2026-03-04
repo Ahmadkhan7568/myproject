@@ -14,8 +14,48 @@ import {
     Bell
 } from "lucide-react";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { isAuthenticated, logout } from "@/lib/auth";
+
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
+    const router = useRouter();
+    const [isChecking, setIsChecking] = useState(true);
+
+    useEffect(() => {
+        if (pathname === "/admin/login") {
+            setIsChecking(false);
+            return;
+        }
+
+        if (!isAuthenticated()) {
+            router.push("/admin/login");
+        } else {
+            setIsChecking(false);
+        }
+    }, [pathname, router]);
+
+    const handleLogout = () => {
+        logout();
+        router.push("/admin/login");
+    };
+
+    if (isChecking && pathname !== "/admin/login") {
+        return (
+            <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
+                <div className="flex flex-col items-center space-y-4">
+                    <div className="w-12 h-12 border-4 border-gold border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-[10px] font-black tracking-widest text-gold uppercase">Authenticating...</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Hide sidebar for login page
+    if (pathname === "/admin/login") {
+        return <>{children}</>;
+    }
 
     const navItems = [
         { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -46,8 +86,8 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                                 key={item.name}
                                 href={item.href}
                                 className={`flex items-center space-x-3 px-5 py-3.5 rounded-2xl transition-all duration-300 group ${isActive
-                                        ? "bg-[#F8F9FA] text-gold shadow-sm font-semibold border border-[#E9ECEF]"
-                                        : "text-[#6C757D] hover:bg-[#F8F9FA] hover:text-[#1a1a1a]"
+                                    ? "bg-[#F8F9FA] text-gold shadow-sm font-semibold border border-[#E9ECEF]"
+                                    : "text-[#6C757D] hover:bg-[#F8F9FA] hover:text-[#1a1a1a]"
                                     }`}
                             >
                                 <Icon className={`w-5 h-5 ${isActive ? "text-gold" : "group-hover:text-[#1a1a1a]"}`} />
@@ -58,7 +98,10 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                 </nav>
 
                 <div className="p-8 border-t border-[#E9ECEF] mt-auto">
-                    <button className="flex items-center space-x-3 text-[#6C757D] hover:text-red-500 transition-colors px-4 py-2 w-full text-sm font-medium">
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center space-x-3 text-[#6C757D] hover:text-red-500 transition-colors px-4 py-2 w-full text-sm font-medium"
+                    >
                         <LogOut size={18} />
                         <span>Sign Out</span>
                     </button>

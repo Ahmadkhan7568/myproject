@@ -81,7 +81,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {db.blogs.slice(0, 3).map((post: any) => (
+            {db.blogs.slice(0, 15).map((post: any) => (
               <Link
                 href={`/blog/${post.slug}`}
                 key={post.slug}

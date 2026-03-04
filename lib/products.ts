@@ -12,6 +12,11 @@ export interface Product {
     capacity: string;
     bestFor: string;
     easeOfUse: string;
+    // Advanced Technical Metrics
+    pumpPressure?: string;
+    grinder?: string;
+    heatingSystem?: string;
+    programmability?: string;
     image: string;
     latestPriceLink: string;
 }
@@ -31,6 +36,9 @@ export const products: Product[] = [
         capacity: "2.0L",
         bestFor: "Espresso Quality",
         easeOfUse: "Guided",
+        pumpPressure: "15 Bar",
+        grinder: "Conical Burr",
+        heatingSystem: "ThermoJet",
         image: "https://images.unsplash.com/photo-1510972527921-ce03766a1cf1?auto=format&fit=crop&q=80&w=1000",
         latestPriceLink: "https://www.amazon.com/dp/B0C3MQHBNH",
     },
@@ -48,6 +56,9 @@ export const products: Product[] = [
         capacity: "1.8L",
         bestFor: "Lattes & Cappuccinos",
         easeOfUse: "Very Easy",
+        pumpPressure: "15 Bar",
+        grinder: "Steel Burr",
+        heatingSystem: "Thermoblock",
         image: "https://images.unsplash.com/photo-1544787210-282743207b5b?auto=format&fit=crop&q=80&w=1000",
         latestPriceLink: "https://www.amazon.com/dp/B09V1L9X6Z",
     },
@@ -65,6 +76,9 @@ export const products: Product[] = [
         capacity: "60 oz",
         bestFor: "Variety",
         easeOfUse: "Easy",
+        pumpPressure: "None",
+        grinder: "None",
+        heatingSystem: "Thermal",
         image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1000",
         latestPriceLink: "https://www.amazon.com/dp/B097Z7N9KF",
     },
@@ -82,6 +96,9 @@ export const products: Product[] = [
         capacity: "2.0L",
         bestFor: "Skill Development",
         easeOfUse: "Intermediate",
+        pumpPressure: "15 Bar",
+        grinder: "Conical Burr",
+        heatingSystem: "Thermocoil",
         image: "https://images.unsplash.com/photo-1610632380989-680fe40816c6?auto=format&fit=crop&q=80&w=1000",
         latestPriceLink: "https://www.amazon.com/dp/B00CH9QWOU",
     },
