@@ -9,7 +9,9 @@ import {
     Search,
     Settings,
     ExternalLink,
-    Coffee
+    Coffee,
+    LogOut,
+    Bell
 } from "lucide-react";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
@@ -23,19 +25,19 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     ];
 
     return (
-        <div className="flex min-h-screen bg-[#0f0f0f] text-white font-sans">
+        <div className="flex min-h-screen bg-[#F8F9FA] text-[#1a1a1a] font-sans transition-colors duration-500">
             {/* Sidebar */}
-            <aside className="w-64 border-r border-white/5 bg-[#141414] hidden md:flex flex-col sticky top-0 h-screen">
-                <div className="p-8">
+            <aside className="w-72 border-r border-[#E9ECEF] bg-white hidden lg:flex flex-col sticky top-0 h-screen shadow-sm z-30">
+                <div className="p-8 mb-4">
                     <Link href="/" className="flex items-center space-x-3 group">
-                        <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center shadow-luxury group-hover:scale-105 transition-all">
                             <Coffee className="text-white w-6 h-6" />
                         </div>
-                        <span className="text-xl font-bold font-serif tracking-tight">Admin<span className="text-gold">CP</span></span>
+                        <span className="text-xl font-bold font-serif tracking-tight text-coffee-brown">Admin<span className="text-gold">CP</span></span>
                     </Link>
                 </div>
 
-                <nav className="flex-grow px-4 space-y-2">
+                <nav className="flex-grow px-6 space-y-1.5">
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         const isActive = pathname === item.href;
@@ -43,48 +45,61 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 group ${isActive
-                                        ? "bg-gold text-white shadow-gold-glow"
-                                        : "text-white/50 hover:bg-white/5 hover:text-white"
+                                className={`flex items-center space-x-3 px-5 py-3.5 rounded-2xl transition-all duration-300 group ${isActive
+                                        ? "bg-[#F8F9FA] text-gold shadow-sm font-semibold border border-[#E9ECEF]"
+                                        : "text-[#6C757D] hover:bg-[#F8F9FA] hover:text-[#1a1a1a]"
                                     }`}
                             >
-                                <Icon className={`w-5 h-5 ${isActive ? "text-white" : "group-hover:text-gold"}`} />
-                                <span className="font-medium tracking-wide">{item.name}</span>
+                                <Icon className={`w-5 h-5 ${isActive ? "text-gold" : "group-hover:text-[#1a1a1a]"}`} />
+                                <span className="text-sm tracking-wide">{item.name}</span>
                             </Link>
                         );
                     })}
                 </nav>
 
-                <div className="p-6 mt-auto">
-                    <div className="p-4 rounded-2xl bg-gradient-to-br from-gold/20 to-transparent border border-gold/10">
-                        <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-gold mb-2">System Status</p>
-                        <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            <span className="text-xs font-medium text-white/70">Scraper Online</span>
-                        </div>
-                    </div>
+                <div className="p-8 border-t border-[#E9ECEF] mt-auto">
+                    <button className="flex items-center space-x-3 text-[#6C757D] hover:text-red-500 transition-colors px-4 py-2 w-full text-sm font-medium">
+                        <LogOut size={18} />
+                        <span>Sign Out</span>
+                    </button>
                 </div>
             </aside>
 
             {/* Main Content */}
             <main className="flex-grow flex flex-col min-h-screen relative">
                 {/* Header */}
-                <header className="h-20 border-b border-white/5 flex items-center justify-between px-8 bg-[#0f0f0f]/80 backdrop-blur-xl sticky top-0 z-10">
-                    <h1 className="text-sm font-bold uppercase tracking-[0.3em] text-white/40">
-                        {navItems.find(i => i.href === pathname)?.name || "Management"}
-                    </h1>
-                    <div className="flex items-center space-x-6">
-                        <Link href="/" target="_blank" className="flex items-center space-x-2 text-xs font-bold text-white/60 hover:text-gold transition-colors">
-                            <span className="tracking-widest underline decoration-gold/30">VIEW STORE</span>
+                <header className="h-20 border-b border-[#E9ECEF] flex items-center justify-between px-10 bg-white/80 backdrop-blur-xl sticky top-0 z-20 shadow-sm">
+                    <div className="flex items-center space-x-4">
+                        <h1 className="text-xs font-black uppercase tracking-[0.4em] text-[#ADB5BD]">
+                            {navItems.find(i => i.href === pathname)?.name || "Management"}
+                        </h1>
+                    </div>
+
+                    <div className="flex items-center space-x-8">
+                        <Link href="/" target="_blank" className="flex items-center space-x-2 text-xs font-black text-gold hover:text-coffee-brown transition-colors uppercase tracking-[0.2em]">
+                            <span>VIEW STORE</span>
                             <ExternalLink size={14} />
                         </Link>
-                        <div className="w-10 h-10 rounded-full border border-white/10 overflow-hidden bg-white/5 flex items-center justify-center">
-                            <span className="text-xs font-bold text-gold">AK</span>
+
+                        <div className="flex items-center space-x-4">
+                            <div className="relative p-2 rounded-xl bg-[#F8F9FA] text-[#6C757D] hover:text-gold transition-colors cursor-pointer border border-[#E9ECEF]">
+                                <Bell size={18} />
+                                <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-red-500 border-2 border-white"></div>
+                            </div>
+                            <div className="flex items-center space-x-3 pl-4 border-l border-[#E9ECEF]">
+                                <div className="text-right hidden sm:block">
+                                    <p className="text-xs font-bold text-[#1a1a1a]">Ahmad Khan</p>
+                                    <p className="text-[10px] text-[#6C757D] font-medium">Super Admin</p>
+                                </div>
+                                <div className="w-10 h-10 rounded-full border-2 border-gold/20 overflow-hidden bg-[#F8F9FA] flex items-center justify-center p-0.5 shadow-sm">
+                                    <div className="w-full h-full rounded-full bg-gold/10 flex items-center justify-center text-xs font-black text-gold">AK</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </header>
 
-                <div className="p-8 flex-grow">
+                <div className="p-10 flex-grow bg-[#F8F9FA]">
                     {children}
                 </div>
             </main>

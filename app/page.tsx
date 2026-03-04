@@ -1,228 +1,91 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-// Home Page Forced Rebuild - 2026-03-05
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import ProductCard from "@/components/ProductCard";
+import Features from "@/components/Features";
+import ProductGrid from "@/components/ProductGrid";
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
-import { products } from "@/lib/products";
-import { blogPosts } from "@/lib/blog";
-import Link from "next/link";
+import Footer from "@/components/Footer";
 import Image from "next/image";
+import Link from "next/link";
+import { getDB, DB } from "@/lib/database";
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 4);
+  const [db, setDb] = useState<DB | null>(null);
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is the best coffee machine for home use in 2025?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Breville Barista Touch Impress is currently our top recommendation for most home enthusiasts."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I need a separate grinder for my coffee machine?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Many premium espresso machines include high-quality integrated grinders, but a separate burr grinder often provides more consistency."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are automatic coffee machines better than manual ones?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Automatic machines offer consistency and speed, while manual machines provide complete control for the home barista."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How often should I descale my coffee machine?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We recommend descaling every 3-4 months to maintain machine longevity and coffee taste."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I buy an espresso machine or a drip coffee maker?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Choose drip for convenience and large batches, and espresso for concentrated shots and milk-based drinks."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are coffee pods and capsules environmentally friendly?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Many brands offer recycling programs, but ground coffee is generally the more eco-friendly choice."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the 'Gold Cup Standard' in coffee brewing?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It is a certification for brewers that maintain precise water temperature and extraction times."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does a high-quality coffee machine last?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A premium espresso machine can last 10-15 years with proper maintenance."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use hot water from my coffee machine for other drinks?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, many modern machines feature a dedicated hot water dispenser for tea or oatmeal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does the price of a coffee machine guarantee better taste?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Price often means better thermal stability, but bean quality and grind freshness are equally critical."
-        }
-      }
-    ]
-  };
+  useEffect(() => {
+    setDb(getDB());
+  }, []);
+
+  if (!db) return <div className="min-h-screen bg-cream flex items-center justify-center font-serif text-coffee-brown italic animate-pulse">Brewing Excellence...</div>;
 
   return (
-    <main className="flex flex-col min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+    <main className="min-h-screen bg-cream selection:bg-gold/30">
       <Navbar />
       <Hero />
+      <Features />
 
-      {/* Featured Products Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-coffee-brown mb-4">
-              Best Coffee Machines of 2025
-            </h2>
-            <div className="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p className="text-matte-black/60 max-w-2xl mx-auto font-sans">
-              Our experts have tested dozens of models to bring you this curated selection of the finest coffee machines available today.
-            </p>
+      {/* Dynamic Products from Database */}
+      <section id="products" className="py-24 bg-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-5xl font-serif text-coffee-brown">Curated <span className="text-gold italic">Selection</span></h2>
+            <p className="text-coffee-brown/60 max-w-2xl mx-auto font-medium">Expertly vetted machines for every skill level, from entry-level home brewers to professional baristas.</p>
           </div>
+          <ProductGrid products={db.products} />
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} featured={index === 0} />
-            ))}
-          </div>
+      <ComparisonTable />
 
-          <div className="text-center mt-16">
-            <Link
-              href="/best-coffee-machines"
-              className="inline-block text-coffee-brown font-bold tracking-widest border-b-2 border-gold pb-1 hover:text-gold transition-colors"
-            >
-              BROWSE ALL TOP PICKS →
+      {/* Dynamic Blogs from Database */}
+      <section id="blog" className="py-24 px-6 bg-[#FAF7F2]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-5xl font-serif text-coffee-brown italic"><span className="text-gold">Coffee</span> Chronicles</h2>
+              <p className="text-coffee-brown/60 max-w-xl font-medium">Deep dives into brewing techniques, maintenance guides, and the latest industry trends.</p>
+            </div>
+            <Link href="/blog" className="group flex items-center space-x-3 text-gold font-black text-xs uppercase tracking-[0.3em] border-b-2 border-gold/10 pb-2 hover:border-gold transition-all">
+              <span>VIEW ALL ARTICLES</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison Section Shortcut */}
-      <section className="py-24 bg-cream/30">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-4xl font-serif text-coffee-brown mb-6">
-                Not sure which one <br /> is right for you?
-              </h2>
-              <p className="text-matte-black/70 mb-8 leading-relaxed">
-                Choosing a coffee machine is a personal decision. Whether you value speed, precision, or aesthetics, our clinical comparison guide helps you weigh the features that matter most to your morning routine.
-              </p>
-              <div className="space-y-4 mb-10">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold text-xs">✓</div>
-                  <span className="text-sm font-medium">Side-by-side technical specs</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold text-xs">✓</div>
-                  <span className="text-sm font-medium">Capacity & dimensions comparison</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center text-gold text-xs">✓</div>
-                  <span className="text-sm font-medium">Price range analysis</span>
-                </div>
-              </div>
-              <Link
-                href="/comparison"
-                className="gold-button px-10 py-5 rounded-full text-sm font-bold tracking-widest inline-block"
-              >
-                COMPARE ALL MODELS
-              </Link>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gold/10 rounded-2xl blur-2xl"></div>
-              <ComparisonTable />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section id="blog" className="py-24 bg-cream/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif text-coffee-brown mb-4 uppercase tracking-tighter">
-              Coffee Insights & <span className="text-gold">Expert Guides</span>
-            </h2>
-            <div className="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p className="text-matte-black/60 max-w-2xl mx-auto font-sans">
-              Stay ahead of the curve with our professional brewing tips, in-depth market analysis, and the latest coffee technology reviews.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {blogPosts.map((post) => (
+            {db.blogs.slice(0, 15).map((post: any) => (
               <Link
-                key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-500 border border-coffee-brown/5"
+                key={post.slug}
+                className="group block bg-white rounded-[40px] overflow-hidden shadow-luxury hover:-translate-y-2 transition-all duration-500 border border-coffee-brown/5"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4 bg-gold px-3 py-1 rounded-full shadow-sm">
-                    <span className="text-[10px] font-bold text-white uppercase tracking-widest">{post.date}</span>
+                  <div className="absolute top-6 left-6">
+                    <span className="bg-white/90 backdrop-blur px-4 py-2 rounded-full text-[10px] font-black tracking-widest text-coffee-brown shadow-xl">
+                      {post.date}
+                    </span>
                   </div>
                 </div>
-                <div className="p-8 flex-grow flex flex-col">
-                  <h3 className="text-xl font-serif text-coffee-brown mb-4 group-hover:text-gold transition-colors line-clamp-2 leading-tight">
+                <div className="p-10">
+                  <h3 className="text-2xl font-serif text-coffee-brown mb-4 group-hover:text-gold transition-colors leading-tight">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-matte-black/60 mb-6 line-clamp-3 font-sans leading-relaxed">
+                  <p className="text-coffee-brown/60 text-sm line-clamp-3 mb-8 leading-relaxed font-serif italic italic">
                     {post.excerpt}
                   </p>
-                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-coffee-brown/5">
-                    <span className="text-[10px] font-bold text-matte-black/40 uppercase tracking-widest flex items-center">
-                      By {post.author}
-                    </span>
-                    <span className="text-gold font-bold text-xs group-hover:translate-x-1 transition-transform">
-                      READ MORE →
+                  <div className="flex items-center justify-between pt-6 border-t border-coffee-brown/5">
+                    <span className="text-[10px] font-black text-gold uppercase tracking-[0.2em]">{post.author}</span>
+                    <span className="text-[10px] font-black text-coffee-brown/40 uppercase tracking-widest flex items-center">
+                      READ MORE
+                      <span className="ml-2 w-4 h-[1px] bg-gold group-hover:w-8 transition-all"></span>
                     </span>
                   </div>
                 </div>
@@ -232,7 +95,9 @@ export default function Home() {
         </div>
       </section>
 
+      <FAQ />
       <Footer />
     </main>
   );
 }
+// Home Page Forced Rebuild - 2026-03-05
