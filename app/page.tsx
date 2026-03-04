@@ -5,7 +5,9 @@ import ProductCard from "@/components/ProductCard";
 import ComparisonTable from "@/components/ComparisonTable";
 import FAQ from "@/components/FAQ";
 import { products } from "@/lib/products";
+import { blogPosts } from "@/lib/blog";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 4);
@@ -176,18 +178,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-24 bg-white">
+      {/* Blog Section */}
+      <section id="blog" className="py-24 bg-cream/20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif text-coffee-brown mb-4">
-              Common Questions
+            <h2 className="text-4xl md:text-5xl font-serif text-coffee-brown mb-4 uppercase tracking-tighter">
+              Coffee Insights & <span className="text-gold">Expert Guides</span>
             </h2>
-            <p className="text-matte-black/60 font-sans">
-              Find quick answers to the most frequent coffee machine inquiries.
+            <div className="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            <p className="text-matte-black/60 max-w-2xl mx-auto font-sans">
+              Stay ahead of the curve with our professional brewing tips, in-depth market analysis, and the latest coffee technology reviews.
             </p>
           </div>
-          <FAQ />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {blogPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-luxury transition-all duration-500 border border-coffee-brown/5"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 left-4 bg-gold px-3 py-1 rounded-full shadow-sm">
+                    <span className="text-[10px] font-bold text-white uppercase tracking-widest">{post.date}</span>
+                  </div>
+                </div>
+                <div className="p-8 flex-grow flex flex-col">
+                  <h3 className="text-xl font-serif text-coffee-brown mb-4 group-hover:text-gold transition-colors line-clamp-2 leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-matte-black/60 mb-6 line-clamp-3 font-sans leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between pt-6 border-t border-coffee-brown/5">
+                    <span className="text-[10px] font-bold text-matte-black/40 uppercase tracking-widest flex items-center">
+                      By {post.author}
+                    </span>
+                    <span className="text-gold font-bold text-xs group-hover:translate-x-1 transition-transform">
+                      READ MORE →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -19,6 +19,9 @@ const Navbar = () => {
                     <Link href="/comparison" className="hover:text-gold transition-colors">
                         Compare
                     </Link>
+                    <Link href="/#blog" className="hover:text-gold transition-colors">
+                        Blog
+                    </Link>
                     <Link href="/about" className="hover:text-gold transition-colors">
                         About
                     </Link>
