@@ -15,7 +15,11 @@ import {
     AlertCircle,
     CheckCircle2,
     ArrowRight,
-    ShieldCheck
+    ShieldCheck,
+    Heart,
+    MessageSquare,
+    Globe,
+    Share2
 } from "lucide-react";
 import { getDB, updateSettings, logWithdrawal } from "@/lib/database";
 
@@ -35,6 +39,10 @@ export default function AdminDashboard() {
         { name: "Affiliate Clicks", value: "842", change: "+12.2%", trending: "up", icon: MousePointer2, color: "text-blue-500" },
         { name: "Conversion Rate", value: "3.2%", change: "-0.5%", trending: "down", icon: TrendingUp, color: "text-green-500" },
         { name: "Active Users", value: "156", change: "+22.3%", trending: "up", icon: Users, color: "text-purple-500" },
+        { name: "Visits (Last 9mo)", value: "124.5K", change: "+15.8%", trending: "up", icon: Globe, color: "text-[#1a1a1a]" },
+        { name: "Total Likes", value: "12.4K", change: "+8.4%", trending: "up", icon: Heart, color: "text-red-500" },
+        { name: "Comments", value: "3,204", change: "+14.1%", trending: "up", icon: MessageSquare, color: "text-blue-500" },
+        { name: "Shares", value: "1,105", change: "+5.2%", trending: "up", icon: Share2, color: "text-green-500" },
     ];
 
     const [paypalEmail, setPaypalEmail] = useState("");
