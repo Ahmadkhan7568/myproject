@@ -59,7 +59,8 @@ export default function AdminDashboard() {
         logWithdrawal({
             method: withdrawalMethod,
             address: withdrawalMethod === 'crypto' ? walletAddress : paypalEmail,
-            amount
+            amount: amount,
+            status: "Processing"
         });
 
         setTimeout(() => {

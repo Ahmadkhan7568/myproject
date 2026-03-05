@@ -11,7 +11,8 @@ import {
     ExternalLink,
     Coffee,
     LogOut,
-    Bell
+    Bell,
+    Wallet
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
@@ -62,6 +63,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         { name: "Products", href: "/admin/products", icon: ShoppingBag },
         { name: "Blogs", href: "/admin/blogs", icon: FileText },
         { name: "Scraper", href: "/admin/scraper", icon: Search },
+        { name: "Withdrawals", href: "/admin/withdrawals", icon: Wallet },
     ];
 
     return (
