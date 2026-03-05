@@ -52,13 +52,15 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
 
                 {/* Image Overlay */}
                 <div className="absolute inset-x-6 bottom-6 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <Link
+                    <a
                         href={product.latestPriceLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="w-full bg-coffee-brown text-white py-4 rounded-3xl text-[10px] font-black tracking-widest uppercase flex items-center justify-center space-x-2 shadow-2xl"
                     >
                         <span>Specifications</span>
                         <ArrowUpRight size={14} />
-                    </Link>
+                    </a>
                 </div>
             </div>
 
@@ -82,13 +84,15 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
                             {product.price}
                         </p>
                     </div>
-                    <Link
+                    <a
                         href={product.latestPriceLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="gold-button px-8 py-4 rounded-3xl text-[10px] font-black tracking-[0.25em] shadow-gold-glow flex items-center space-x-2"
                     >
                         <span>GET DEAL</span>
                         <ArrowUpRight size={14} />
-                    </Link>
+                    </a>
                 </div>
             </div>
         </div>

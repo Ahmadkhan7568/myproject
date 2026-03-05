@@ -85,7 +85,10 @@ export const realProductIndex: ScrapedProduct[] = [
         milkFrother: true,
         capacity: "1.8L",
         bestFor: "Variety",
-        easeOfUse: "Easy"
+        easeOfUse: "Easy",
+        pumpPressure: "15 Bar",
+        grinder: "Steel Burr",
+        heatingSystem: "Thermoblock"
     },
     {
         name: "Ninja Luxe Café Pro Series",
@@ -99,7 +102,10 @@ export const realProductIndex: ScrapedProduct[] = [
         milkFrother: true,
         capacity: "2.1L",
         bestFor: "Versatility",
-        easeOfUse: "Guided"
+        easeOfUse: "Guided",
+        pumpPressure: "15 Bar",
+        grinder: "Integrated Conical",
+        heatingSystem: "ThermoJet"
     },
     {
         name: "Rancilio Silvia Pro X",
@@ -113,7 +119,10 @@ export const realProductIndex: ScrapedProduct[] = [
         milkFrother: true,
         capacity: "2.5L",
         bestFor: "Pros",
-        easeOfUse: "Expert"
+        easeOfUse: "Expert",
+        pumpPressure: "Vibratory",
+        grinder: "None",
+        heatingSystem: "Dual Boiler PID"
     },
     {
         name: "De'Longhi Stilosa",
@@ -127,7 +136,10 @@ export const realProductIndex: ScrapedProduct[] = [
         milkFrother: true,
         capacity: "1.0L",
         bestFor: "Budget",
-        easeOfUse: "Intermediate"
+        easeOfUse: "Intermediate",
+        pumpPressure: "15 Bar",
+        grinder: "None",
+        heatingSystem: "Stainless Steel Boiler"
     },
     {
         name: "Gaggia Classic Pro",
@@ -141,6 +153,9 @@ export const realProductIndex: ScrapedProduct[] = [
         milkFrother: true,
         capacity: "2.1L",
         bestFor: "Durability",
-        easeOfUse: "Intermediate"
+        easeOfUse: "Intermediate",
+        pumpPressure: "15 Bar",
+        grinder: "None",
+        heatingSystem: "Rapid Steam Boiler"
     }
 ];
