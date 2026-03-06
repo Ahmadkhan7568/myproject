@@ -80,7 +80,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Thermal",
         image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B097Z7N9KF",
+        latestPriceLink: "https://www.amazon.com/dp/B08QZSN97Z",
     },
     {
         id: "breville-barista-express",
@@ -160,7 +160,7 @@ export const products: Product[] = [
         grinder: "Ceramic Burr",
         heatingSystem: "Thermoblock",
         image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B08V5MDXDM",
+        latestPriceLink: "https://www.amazon.com/dp/B08G7F2V96",
     },
     {
         id: "oxo-brew-8-cup",
@@ -180,7 +180,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Precision Heating",
         image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B0892CHRT3",
+        latestPriceLink: "https://www.amazon.com/dp/B07H9G93WK",
     },
     {
         id: "keurig-k-elite",
@@ -200,7 +200,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Internal Tank",
         image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B078XNWG3N",
+        latestPriceLink: "https://www.amazon.com/dp/B07G15SHB8",
     },
     {
         id: "nespresso-vertuoplus",
@@ -260,7 +260,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Internal Heating",
         image: "https://images.unsplash.com/photo-1517701550927-30cfcb61d4bd?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B07LBCMHG5",
+        latestPriceLink: "https://www.amazon.com/dp/B0BP3C7F4D",
     },
     {
         id: "jura-e8-automatic",
@@ -280,7 +280,7 @@ export const products: Product[] = [
         grinder: "Professional Aroma Grinder",
         heatingSystem: "Thermoblock",
         image: "https://images.unsplash.com/photo-1524350300313-019f39d67d7a?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B08X6K6K5R",
+        latestPriceLink: "https://www.amazon.com/dp/B0BRR7YF3C",
     },
     {
         id: "rancilio-silvia-m",
@@ -300,7 +300,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Single Brass Boiler",
         image: "https://images.unsplash.com/photo-1572442388796-11668a67e53a?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B000109COY",
+        latestPriceLink: "https://www.amazon.com/dp/B084RT95LQ",
     },
     {
         id: "gaggia-classic-pro",
@@ -320,7 +320,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Rapid Steam Boiler",
         image: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B07KKC4W8N",
+        latestPriceLink: "https://www.amazon.com/dp/B086H24F5F",
     },
     {
         id: "baratza-encore-esp",
@@ -340,7 +340,7 @@ export const products: Product[] = [
         grinder: "Conical Burr",
         heatingSystem: "N/A",
         image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B0BYBC3B72",
+        latestPriceLink: "https://www.amazon.com/dp/B09V1K1B5W",
     },
     {
         id: "delonghi-stilosa",
@@ -360,7 +360,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Stainless Steel Boiler",
         image: "https://images.unsplash.com/photo-1521302080334-4bebac2763a6?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B08C96D692",
+        latestPriceLink: "https://www.amazon.com/dp/B0971K4V9D",
     },
     {
         id: "rocket-espresso-apartamento",
@@ -380,7 +380,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Heat Exchange Boiler",
         image: "https://images.unsplash.com/photo-1572442388796-11668a67e53a?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B01MT29C1F",
+        latestPriceLink: "https://www.amazon.com/dp/B071L9S7X4",
     },
     {
         id: "la-marzocco-linea-micra",
@@ -440,7 +440,7 @@ export const products: Product[] = [
         grinder: "P.R.G. (Electronic)",
         heatingSystem: "Thermoblock",
         image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B09D8RVX1W",
+        latestPriceLink: "https://www.amazon.com/dp/B095J6NKPK",
     },
     {
         id: "fellow-ode-gen-2",
@@ -460,7 +460,7 @@ export const products: Product[] = [
         grinder: "64mm Flat Burr",
         heatingSystem: "N/A",
         image: "https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B0BJLFLN9L",
+        latestPriceLink: "https://www.amazon.com/dp/B0BMF975N2",
     },
     {
         id: "kitchenaid-semi-automatic",
@@ -480,7 +480,7 @@ export const products: Product[] = [
         grinder: "None",
         heatingSystem: "Thermoblock",
         image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=1000",
-        latestPriceLink: "https://www.amazon.com/dp/B08VMT1W2S",
+        latestPriceLink: "https://www.amazon.com/dp/B0982L9V73",
     },
     {
         id: "lelit-bianca-v3",
