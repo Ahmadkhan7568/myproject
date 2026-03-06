@@ -76,22 +76,22 @@ export default function AdminDashboard() {
                 {stats.map((stat) => {
                     const Icon = stat.icon;
                     return (
-                        <div key={stat.name} className="p-8 rounded-[32px] bg-white border border-[#E9ECEF] hover:shadow-luxury transition-all duration-500 group relative overflow-hidden">
+                        <div key={stat.name} className="p-8 rounded-[32px] bg-[#111111] border border-white/5 hover:border-gold/20 hover:shadow-gold-glow/5 transition-all duration-500 group relative overflow-hidden">
                             <div className="absolute top-0 right-0 p-6 opacity-[0.03] group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-700">
-                                <Icon size={80} />
+                                <Icon size={80} className="text-white" />
                             </div>
                             <div className="flex items-center justify-between mb-6">
-                                <div className={`p-3 rounded-2xl bg-[#F8F9FA] ${stat.color} border border-[#E9ECEF]`}>
+                                <div className={`p-3 rounded-2xl bg-white/5 ${stat.color} border border-white/10`}>
                                     <Icon size={20} />
                                 </div>
-                                <div className={`flex items-center text-xs font-bold px-2 py-1 rounded-full ${stat.trending === 'up' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
+                                <div className={`flex items-center text-xs font-bold px-2 py-1 rounded-full ${stat.trending === 'up' ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'}`}>
                                     {stat.change}
                                     {stat.trending === 'up' ? <ArrowUpRight size={14} className="ml-1" /> : <ArrowDownRight size={14} className="ml-1" />}
                                 </div>
                             </div>
                             <div>
-                                <h3 className="text-[#6C757D] text-[10px] font-black uppercase tracking-[0.2em] mb-1">{stat.name}</h3>
-                                <p className="text-3xl font-bold font-serif text-coffee-brown">{stat.value}</p>
+                                <h3 className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] mb-1">{stat.name}</h3>
+                                <p className="text-3xl font-bold font-serif text-white">{stat.value}</p>
                             </div>
                         </div>
                     );
@@ -101,15 +101,15 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 {/* Main Insight Section */}
                 <div className="lg:col-span-2 space-y-10">
-                    <div className="p-10 rounded-[48px] bg-white border border-[#E9ECEF] shadow-sm relative overflow-hidden group min-h-[400px]">
+                    <div className="p-10 rounded-[48px] bg-[#111111] border border-white/5 shadow-sm relative overflow-hidden group min-h-[400px]">
                         <div className="flex justify-between items-start mb-12">
                             <div>
-                                <h2 className="text-2xl font-serif text-coffee-brown mb-2">Earnings Report</h2>
-                                <p className="text-[#6C757D] text-sm font-medium">Monitoring your machine sales performance.</p>
+                                <h2 className="text-2xl font-serif text-white mb-2">Earnings Report</h2>
+                                <p className="text-white/40 text-sm font-medium">Monitoring your machine sales performance.</p>
                             </div>
-                            <div className="p-1.5 rounded-2xl bg-[#F8F9FA] border border-[#E9ECEF] flex space-x-2">
-                                <button className="px-6 py-2 rounded-xl bg-white text-[10px] font-black tracking-widest uppercase shadow-sm border border-[#E9ECEF]">Detailed</button>
-                                <button className="px-6 py-2 rounded-xl text-[10px] font-black tracking-widest uppercase text-[#6C757D] hover:text-[#1a1a1a] transition-colors">Compact</button>
+                            <div className="p-1.5 rounded-2xl bg-white/5 border border-white/10 flex space-x-2">
+                                <button className="px-6 py-2 rounded-xl bg-white/10 text-[10px] font-black tracking-widest uppercase shadow-sm border border-white/10 text-white">Detailed</button>
+                                <button className="px-6 py-2 rounded-xl text-[10px] font-black tracking-widest uppercase text-white/40 hover:text-white transition-colors">Compact</button>
                             </div>
                         </div>
 
@@ -121,13 +121,13 @@ export default function AdminDashboard() {
                                         className="w-full bg-gold/10 rounded-t-xl group-hover/bar:bg-gold transition-all duration-500 border-x border-t border-gold/20"
                                         style={{ height: `${(v / 240) * 100}%` }}
                                     ></div>
-                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-matte-black text-white text-[8px] font-black px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-[8px] font-black px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity">
                                         ${v}
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <div className="flex justify-between px-2 text-[10px] font-black text-[#ADB5BD] uppercase tracking-[0.3em]">
+                        <div className="flex justify-between px-2 text-[10px] font-black text-white/20 uppercase tracking-[0.3em]">
                             <span>Jul</span>
                             <span>Sep</span>
                             <span>Nov</span>
@@ -137,12 +137,12 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* Withdrawal System */}
-                    <div className="p-10 rounded-[48px] bg-white border border-[#E9ECEF] shadow-sm">
+                    <div className="p-10 rounded-[48px] bg-[#111111] border border-white/5 shadow-sm">
                         <div className="flex items-center space-x-4 mb-8">
                             <div className="p-3 rounded-2xl bg-gold/10 text-gold border border-gold/20">
                                 <Wallet size={24} />
                             </div>
-                            <h2 className="text-2xl font-serif text-coffee-brown">Get Paid</h2>
+                            <h2 className="text-2xl font-serif text-white">Get Paid</h2>
                         </div>
 
                         {withdrawn ? (

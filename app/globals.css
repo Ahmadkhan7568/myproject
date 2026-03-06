@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf7f2;
-  --foreground: #1a1a1a;
+  --background: #000000;
+  --foreground: #ffffff;
   --coffee-brown: #3e2723;
   --gold: #c6a75e;
   --cream: #fdfaf5;
-  --matte-black: #121212;
+  --matte-black: #0a0a0a;
 }
 
 @theme {
-  --font-playfair: "Playfair Display", serif;
+  --font-outfit: "Outfit", sans-serif;
+  --font-serif: "Outfit", sans-serif;
   --font-inter: "Inter", sans-serif;
 
   --color-gold: #c6a75e;
@@ -37,8 +38,8 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-playfair);
-    @apply tracking-tighter;
+    font-family: var(--font-outfit);
+    @apply tracking-tight font-semibold;
   }
 }
 
