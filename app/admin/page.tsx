@@ -104,7 +104,7 @@ export default function AdminDashboard() {
                     <div className="p-10 rounded-[48px] bg-white border border-[#E9ECEF] shadow-sm relative overflow-hidden group min-h-[400px]">
                         <div className="flex justify-between items-start mb-12">
                             <div>
-                                <h2 className="text-2xl font-serif text-coffee-brown mb-2">Revenue Analytics</h2>
+                                <h2 className="text-2xl font-serif text-coffee-brown mb-2">Earnings Report</h2>
                                 <p className="text-[#6C757D] text-sm font-medium">Monitoring your machine sales performance.</p>
                             </div>
                             <div className="p-1.5 rounded-2xl bg-[#F8F9FA] border border-[#E9ECEF] flex space-x-2">
@@ -115,7 +115,7 @@ export default function AdminDashboard() {
 
                         {/* Mock Chart */}
                         <div className="h-64 flex items-end space-x-3 mb-4">
-                            {[15, 25, 35, 30, 45, 60, 55, 75, 80, 70, 90, 100].map((h, i) => (
+                            {[30, 45, 60, 55, 75, 80, 70, 90, 100].map((h, i) => (
                                 <div key={i} className="flex-grow group/bar relative">
                                     <div
                                         className="w-full bg-[#F8F9FA] rounded-t-xl group-hover/bar:bg-gold transition-all duration-500 border-x border-t border-[#E9ECEF]"
@@ -125,11 +125,11 @@ export default function AdminDashboard() {
                             ))}
                         </div>
                         <div className="flex justify-between px-2 text-[10px] font-black text-[#ADB5BD] uppercase tracking-[0.3em]">
-                            <span>Jan</span>
-                            <span>Apr</span>
                             <span>Jul</span>
-                            <span>Oct</span>
-                            <span>Dec</span>
+                            <span>Sep</span>
+                            <span>Nov</span>
+                            <span>Jan</span>
+                            <span>Mar</span>
                         </div>
                     </div>
 
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
                             <div className="p-3 rounded-2xl bg-gold/10 text-gold border border-gold/20">
                                 <Wallet size={24} />
                             </div>
-                            <h2 className="text-2xl font-serif text-coffee-brown">Withdrawal Liquidity</h2>
+                            <h2 className="text-2xl font-serif text-coffee-brown">Get Paid</h2>
                         </div>
 
                         {withdrawn ? (
@@ -258,9 +258,9 @@ export default function AdminDashboard() {
                                                     <AlertCircle size={20} />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <h4 className="text-xs font-black uppercase tracking-widest text-blue-900">Capital Protection Protocol</h4>
+                                                    <h4 className="text-xs font-black uppercase tracking-widest text-blue-900">Safety & Verification</h4>
                                                     <p className="text-xs text-blue-800/70 leading-relaxed font-medium italic">
-                                                        "For diversified risk management and liquidity stabilization, crypto settlements are currently capped at 50% of the total accrued balance per cycle. Conversion audits require 3-7 business days for scrip verification."
+                                                        "To keep things secure, crypto payments are currently limited to 50% of your total balance per request. It usually takes 3-7 business days to verify and process."
                                                     </p>
                                                 </div>
                                             </div>
@@ -271,8 +271,8 @@ export default function AdminDashboard() {
                                 {withdrawalMethod && (
                                     <div className="pt-6">
                                         <div className="flex justify-between items-center mb-6 px-4">
-                                            <span className="text-[10px] font-black text-[#ADB5BD] uppercase tracking-[0.3em]">Estimated Settlement</span>
-                                            <span className="text-2xl font-serif text-coffee-brown">$645.00 <span className="text-[10px] font-sans text-gold uppercase tracking-widest">(50% Cap)</span></span>
+                                            <span className="text-[10px] font-black text-[#ADB5BD] uppercase tracking-[0.3em]">Estimated Payment</span>
+                                            <span className="text-2xl font-serif text-coffee-brown">$645.00 <span className="text-[10px] font-sans text-gold uppercase tracking-widest">(50% Limit)</span></span>
                                         </div>
                                         <button
                                             onClick={handleWithdraw}
@@ -283,7 +283,7 @@ export default function AdminDashboard() {
                                                 <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
                                             ) : (
                                                 <>
-                                                    <span>EXECUTE DISBURSEMENT</span>
+                                                    <span>GET PAID NOW</span>
                                                     <ArrowRight size={18} />
                                                 </>
                                             )}

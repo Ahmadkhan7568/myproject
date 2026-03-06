@@ -75,7 +75,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                         <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center shadow-luxury group-hover:scale-105 transition-all">
                             <Coffee className="text-white w-6 h-6" />
                         </div>
-                        <span className="text-xl font-bold font-serif tracking-tight text-coffee-brown">Admin<span className="text-gold">CP</span></span>
+                        <span className="text-xl font-bold font-serif tracking-tight text-coffee-brown">Admin<span className="text-gold"> Panel</span></span>
                     </Link>
                 </div>
 

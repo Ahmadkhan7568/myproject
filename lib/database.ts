@@ -58,3 +58,9 @@ export const logWithdrawal = (withdrawal: any) => {
     db.withdrawals.push({ ...withdrawal, id: Date.now(), date: new Date().toISOString() });
     saveDB(db);
 };
+
+export const deleteWithdrawal = (id: number) => {
+    const db = getDB();
+    db.withdrawals = db.withdrawals.filter(w => w.id !== id);
+    saveDB(db);
+};

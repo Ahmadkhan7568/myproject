@@ -1,17 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Copy, CheckCircle2, AlertCircle, Clock, Wallet } from "lucide-react";
-import { getDB } from "@/lib/database";
+import { Copy, CheckCircle2, AlertCircle, Clock, Wallet, Trash2 } from "lucide-react";
+import { getDB, deleteWithdrawal } from "@/lib/database";
 
 export default function WithdrawalsPage() {
     const [withdrawals, setWithdrawals] = useState<any[]>([]);
     const [copiedId, setCopiedId] = useState<number | null>(null);
 
-    useEffect(() => {
+    const refreshData = () => {
         const db = getDB();
-        // Reverse to show newest first
         setWithdrawals([...db.withdrawals].reverse());
+    };
+
+    useEffect(() => {
+        refreshData();
     }, []);
 
     const copyToClipboard = (text: string, id: number) => {
@@ -20,12 +23,19 @@ export default function WithdrawalsPage() {
         setTimeout(() => setCopiedId(null), 2000);
     };
 
+    const handleDelete = (id: number) => {
+        if (confirm("Are you sure you want to remove this record?")) {
+            deleteWithdrawal(id);
+            refreshData();
+        }
+    };
+
     return (
         <div className="space-y-10 animate-in fade-in duration-700">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-serif text-coffee-brown mb-2 tracking-tight">Withdrawal Requests</h1>
-                    <p className="text-[#6C757D] text-sm font-medium">Manage and audit pending partner disbursements.</p>
+                    <h1 className="text-3xl font-serif text-coffee-brown mb-2 tracking-tight">Payment Requests</h1>
+                    <p className="text-[#6C757D] text-sm font-medium">View and manage requests for money.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-white border border-[#E9ECEF] flex space-x-6 shadow-sm">
                     <div>
@@ -33,7 +43,7 @@ export default function WithdrawalsPage() {
                         <p className="text-xl font-serif text-coffee-brown leading-none">{withdrawals.length}</p>
                     </div>
                     <div>
-                        <p className="text-[10px] font-black tracking-widest text-[#ADB5BD] uppercase mb-1">Pending Vol.</p>
+                        <p className="text-[10px] font-black tracking-widest text-[#ADB5BD] uppercase mb-1">Waiting to be Paid</p>
                         <p className="text-xl font-serif text-gold leading-none">
                             ${withdrawals.filter(w => w.status === 'Processing').reduce((acc, curr) => acc + curr.amount, 0).toFixed(2)}
                         </p>
@@ -104,9 +114,18 @@ export default function WithdrawalsPage() {
                                             </div>
                                         </td>
                                         <td className="p-6 text-right">
-                                            <button className="text-[10px] font-black tracking-widest uppercase text-gold hover:text-coffee-brown transition-colors">
-                                                Details
-                                            </button>
+                                            <div className="flex items-center justify-end space-x-4">
+                                                <button className="text-[10px] font-black tracking-widest uppercase text-gold hover:text-coffee-brown transition-colors">
+                                                    Details
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(withdrawal.id)}
+                                                    className="p-2 rounded-xl text-[#ADB5BD] hover:text-red-500 hover:bg-red-50 transition-all border border-transparent hover:border-red-100"
+                                                    title="Remove Entry"
+                                                >
+                                                    <Trash2 size={16} />
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 ))
