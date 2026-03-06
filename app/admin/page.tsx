@@ -114,13 +114,16 @@ export default function AdminDashboard() {
                         </div>
 
                         {/* Mock Chart */}
-                        <div className="h-64 flex items-end space-x-3 mb-4">
+                        <div className="h-64 flex items-end space-x-3 mb-4 px-2">
                             {[30, 45, 60, 55, 75, 80, 70, 90, 100].map((h, i) => (
-                                <div key={i} className="flex-grow group/bar relative">
+                                <div key={i} className="flex-grow group/bar relative h-full flex items-end">
                                     <div
-                                        className="w-full bg-[#F8F9FA] rounded-t-xl group-hover/bar:bg-gold transition-all duration-500 border-x border-t border-[#E9ECEF]"
+                                        className="w-full bg-gold/10 rounded-t-xl group-hover/bar:bg-gold transition-all duration-500 border-x border-t border-gold/20"
                                         style={{ height: `${h}%` }}
                                     ></div>
+                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-matte-black text-white text-[8px] font-black px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity">
+                                        ${(h * 12.9).toFixed(0)}
+                                    </div>
                                 </div>
                             ))}
                         </div>
